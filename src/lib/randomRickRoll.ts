@@ -6,9 +6,13 @@ const constructYoutubeUrl = (youtubeId: string) => {
 };
 
 const capitalizeDomain = (url: string) => {
-  const domain = url.split("/")[2];
-  const path = url.split("/").slice(1).join("/");
-  return `${domain.toLocaleUpperCase()}/${path}`;
+  const splitByProtocol = url.split("://");
+  const protocol = splitByProtocol[0];
+  const remainingUrl = splitByProtocol[1];
+  const remainingUrlSplitBySlash = remainingUrl.split("/");
+  const domain = remainingUrlSplitBySlash[0];
+  const path = remainingUrlSplitBySlash.slice(1).join("/");
+  return `${protocol}://${domain.toLocaleUpperCase()}/${path}`;
 };
 
 const RICK_ROLL_YT_IDS = ["dQw4w9WgXcQ", "xvFZjo5PgG0", "iik25wqIuFo"];
