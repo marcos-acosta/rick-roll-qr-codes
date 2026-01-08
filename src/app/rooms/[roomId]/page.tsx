@@ -4,14 +4,19 @@ import { use, useState } from "react";
 import usePartySocket from "partysocket/react";
 import QrCode from "@/components/QrCode";
 import { generateRandomRickRollQrCode } from "@/lib/randomRickRoll";
-import { QrCodeData } from "@/types/interfaces";
+import { loadQrCodesFromFile } from "@/lib/qrCodeUpload";
+import { GameData, GameState, QrCodeData } from "@/types/interfaces";
 
-export default function RoomPage({ params }: { params: Promise<{ roomId: string }> }) {
+export default function RoomPage({
+  params,
+}: {
+  params: Promise<{ roomId: string }>;
+}) {
   // Unwrap the params Promise
   const { roomId } = use(params);
 
   const [role, setRole] = useState<"creator" | "joiner" | null>(null);
-  const [count, setCount] = useState(0);
+  const [gameData, setGameData] = useState<GameData | null>(null);
   const [qrCodeData] = useState<QrCodeData>(generateRandomRickRollQrCode());
 
   // This hook creates a WebSocket connection to your PartyKit server
@@ -25,8 +30,8 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
       // Handle different message types from the server
       if (data.type === "role") {
         setRole(data.role);
-      } else if (data.type === "count") {
-        setCount(data.count);
+      } else if (data.type === "game_data") {
+        setGameData(data.gameData);
       }
     },
   });
@@ -34,6 +39,25 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
   const increment = () => {
     // Send a message to the server
     socket.send(JSON.stringify({ type: "increment" }));
+  };
+
+  const handleFileUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const qrCodes = await loadQrCodesFromFile(file);
+      // Send the QR codes to the server
+      socket.send(JSON.stringify({ type: "upload_qr_codes", qrCodes }));
+    } catch (error) {
+      alert("Error loading QR codes: " + error);
+    }
+  };
+
+  const start = () => {
+    socket.send(JSON.stringify({ type: "start_game" }));
   };
 
   if (!role) {
@@ -44,11 +68,29 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
     <div style={{ padding: "20px" }}>
       <h1>Room: {roomId}</h1>
       <h2>Role: {role}</h2>
-      <h2>Count: {count}</h2>
+      {gameData && (
+        <div>
+          <h2>Count: {gameData.count}</h2>
+          <h2>Game state: {gameData.gameState}</h2>
+          <h2>Has player: {gameData.hasPlayer ? "yes" : "no"}</h2>
+        </div>
+      )}
 
       {role === "creator" ? (
         <div>
           <h3>You are the creator - show QR code</h3>
+          <div style={{ marginBottom: "20px" }}>
+            <label htmlFor="qr-upload">Upload QR Codes JSON: </label>
+            <input
+              id="qr-upload"
+              type="file"
+              accept="application/json"
+              onChange={handleFileUpload}
+            />
+          </div>
+          {gameData?.gameState === GameState.READY_TO_START && (
+            <button onClick={start}>Start</button>
+          )}
           <div style={{ maxWidth: "300px" }}>
             <QrCode qrCodeData={qrCodeData} />
           </div>
@@ -60,7 +102,10 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
       ) : (
         <div>
           <h3>You are the joiner - scan or skip!</h3>
-          <button onClick={increment} style={{ padding: "10px 20px", fontSize: "16px" }}>
+          <button
+            onClick={increment}
+            style={{ padding: "10px 20px", fontSize: "16px" }}
+          >
             Increment Count
           </button>
         </div>

@@ -6,11 +6,11 @@ export enum ErrorCorrectionLevel {
 }
 
 export enum GameState {
-  WAITING_FOR_PLAYER,
-  WAITING_TO_START,
-  PENDING,
-  GUESSED,
-  GAME_OVER,
+  NOT_STARTED = "NOT_STARTED",
+  READY_TO_START = "READY_TO_START",
+  PENDING = "PENDING",
+  GUESSED = "GUESSED",
+  GAME_OVER = "GAME_OVER",
 }
 
 export interface QrCodeData {
@@ -27,4 +27,5 @@ export interface GameData {
   qrCodeData: QrCodeData | null;
   gameState: GameState;
   scanned: boolean | null;
+  hasPlayer: boolean;
 }
