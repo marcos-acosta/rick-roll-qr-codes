@@ -181,6 +181,38 @@ input.qrCodesJsonUpload {
   margin-top: 20px;
 }
 
+.topLeftTitle {
+  padding: 25px 25px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.trialInnerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  max-width: 600px;
+}
+
+.trialQrCodeContainer {
+  width: 75%;
+  margin-top: 50px;
+}
+
+.roundText {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-top: 100px;
+}
+
+.scoreContainer {
+  font-size: 2rem;
+  margin-top: 5px;
+  font-style: italic;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {

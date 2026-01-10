@@ -8,6 +8,7 @@ import { GameData, GameState } from "@/types/interfaces";
 import { Scanner } from "@yudiel/react-qr-scanner";
 import Loading from "@/layouts/Loading";
 import RoomHostSetup from "@/layouts/RoomHostSetup";
+import HostTrial from "@/layouts/HostTrial";
 
 export default function RoomPage({
   params,
@@ -68,17 +69,34 @@ export default function RoomPage({
     socket.send(JSON.stringify({ type: "start_over" }));
   };
 
+  // console.log(gameData);
+
+  const isInRoomSetup =
+    gameData?.gameState == GameState.NOT_STARTED ||
+    gameData?.gameState === GameState.READY_TO_START;
+  const isInGame =
+    gameData?.gameState == GameState.PENDING ||
+    gameData?.gameState === GameState.GUESSED;
+
+  console.log(isInRoomSetup, isInGame);
+
   if (!role) {
     return <Loading />;
   }
 
   return role === "creator" ? (
-    <RoomHostSetup
-      handleFileUpload={handleFileUpload}
-      roomCode={roomId}
-      gameData={gameData}
-      start={start}
-    />
+    isInRoomSetup ? (
+      <RoomHostSetup
+        handleFileUpload={handleFileUpload}
+        roomCode={roomId}
+        gameData={gameData}
+        start={start}
+      />
+    ) : isInGame ? (
+      <HostTrial gameData={gameData} />
+    ) : (
+      <></>
+    )
   ) : (
     // <div>
     //   <h3>You are the creator - show QR code</h3>
