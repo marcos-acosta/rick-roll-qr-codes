@@ -12,6 +12,7 @@ const INITIAL_GAME_DATA: GameData = {
   scanned: null,
   correct: null,
   hasPlayer: false,
+  numSafeQrCodesUploaded: null,
 };
 
 // This is the server that runs on PartyKit's edge infrastructure
@@ -99,6 +100,7 @@ export default class Server implements Party.Server {
       const qrCodes = data.qrCodes as QrCodeData[];
       if (Array.isArray(qrCodes) && qrCodes.length > 0) {
         this.safeQrCodeSampler = new Sampler(qrCodes);
+        this.gameData.numSafeQrCodesUploaded = qrCodes.length;
 
         // If we have both a player and QR codes, we're ready to start
         if (this.isReadyToStart()) {

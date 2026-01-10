@@ -34,4 +34,5 @@ export interface GameData {
   scanned: boolean | null;
   correct: boolean | null;
   hasPlayer: boolean;
+  numSafeQrCodesUploaded: null | number;
 }

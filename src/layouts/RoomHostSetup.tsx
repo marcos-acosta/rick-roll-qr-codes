@@ -78,7 +78,9 @@ export default function RoomHostSetup(props: RoomHostSetupProps) {
               onClick={handleClickUpload}
             >
               <div className={styles.dropJsonInstructions}>
-                drag and drop non-rick roll QR code JSON
+                {props.gameData?.numSafeQrCodesUploaded
+                  ? `qr codes uploaded!`
+                  : "drag and drop non-rick roll qr code json"}
               </div>
               <input
                 ref={fileInputRef}
