@@ -6,6 +6,7 @@ import QrCode from "@/components/QrCode";
 import { generateRandomRickRollQrCode } from "@/lib/randomRickRoll";
 import { loadQrCodesFromFile } from "@/lib/qrCodeUpload";
 import { GameData, GameState, QrCodeData } from "@/types/interfaces";
+import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
 
 export default function RoomPage({
   params,
@@ -64,6 +65,33 @@ export default function RoomPage({
 
   const startOver = () => {
     socket.send(JSON.stringify({ type: "start_over" }));
+  };
+
+  const highlightCodeOnCanvas = (
+    detectedCodes: IDetectedBarcode[],
+    ctx: CanvasRenderingContext2D
+  ) => {
+    detectedCodes.forEach((detectedCode) => {
+      const { boundingBox, cornerPoints } = detectedCode;
+
+      // Draw bounding box
+      ctx.strokeStyle = "#00FF00";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(
+        boundingBox.x,
+        boundingBox.y,
+        boundingBox.width,
+        boundingBox.height
+      );
+
+      // Draw corner points
+      ctx.fillStyle = "#FF0000";
+      cornerPoints.forEach((point) => {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+        ctx.fill();
+      });
+    });
   };
 
   if (!role) {
@@ -139,7 +167,19 @@ export default function RoomPage({
           <h3>You are the joiner - scan or skip!</h3>
           {gameData?.gameState === GameState.PENDING ? (
             <div>
-              <button onClick={() => guess(true)}>Scan</button>
+              <div>
+                <Scanner
+                  onScan={() => guess(true)}
+                  components={{
+                    tracker: highlightCodeOnCanvas,
+                    onOff: true,
+                    torch: false,
+                    zoom: false,
+                    finder: false,
+                  }}
+                  sound={false}
+                />
+              </div>
               <button onClick={() => guess(false)}>Skip</button>
             </div>
           ) : gameData?.gameState === GameState.GUESSED ? (
