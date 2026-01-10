@@ -1,72 +1,45 @@
 "use client";
 
-import QrCode from "@/components/QrCode";
-import styles from "./page.module.css";
-import { generateRandomRickRollQrCode } from "@/lib/randomRickRoll";
-import { loadQrCodesFromFile } from "@/lib/qrCodeUpload";
-import { useState, useEffect } from "react";
-import { QrCodeData } from "@/types/interfaces";
-import { selectRandom } from "@/lib/util";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
-  const [qrCodeData, setQrCodeData] = useState<QrCodeData | null>(null);
-  const [uploadedQrCodes, setUploadedQrCodes] = useState<QrCodeData[]>([]);
+export default function RoomsPage() {
+  const [roomCode, setRoomCode] = useState("");
+  const router = useRouter();
 
-  useEffect(() => {
-    setQrCodeData(generateRandomRickRollQrCode());
-  }, []);
-
-  const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    try {
-      const qrCodes = await loadQrCodesFromFile(file);
-      setUploadedQrCodes(qrCodes);
-    } catch (error) {
-      alert("Error loading QR codes: " + error);
-    }
+  // Generate a random 6-character room code
+  const createRoom = () => {
+    const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+    router.push(`/room/${code}`);
   };
 
-  const updateQrCodeData = () => {
-    // If we have uploaded QR codes, 50% of the time use one from the list
-    if (uploadedQrCodes.length > 0 && Math.random() < 0.5) {
-      setQrCodeData(selectRandom(uploadedQrCodes));
-    } else {
-      setQrCodeData(generateRandomRickRollQrCode());
+  const joinRoom = () => {
+    if (roomCode.trim()) {
+      router.push(`/room/${roomCode.trim().toUpperCase()}`);
     }
   };
-
-  if (!qrCodeData) {
-    return <div>Loading...</div>;
-  }
 
   return (
-    <div>
-      <div>
-        <label htmlFor="qr-upload">Upload QR Codes JSON: </label>
+    <div style={{ padding: "20px" }}>
+      <h1>QR Code Game</h1>
+
+      <div style={{ marginTop: "40px" }}>
+        <h2>Create New Room</h2>
+        <button onClick={createRoom}>Create Room</button>
+      </div>
+
+      <div style={{ marginTop: "40px" }}>
+        <h2>Join Existing Room</h2>
         <input
-          id="qr-upload"
-          type="file"
-          accept="application/json"
-          onChange={handleFileUpload}
-          className={styles.qrCodesJsonUpload}
+          type="text"
+          placeholder="Enter room code"
+          value={roomCode}
+          onChange={(e) => setRoomCode(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && joinRoom()}
+          style={{ padding: "8px", marginRight: "10px" }}
         />
-        {uploadedQrCodes.length > 0 && (
-          <span> ({uploadedQrCodes.length} QR codes loaded)</span>
-        )}
+        <button onClick={joinRoom}>Join Room</button>
       </div>
-      <br />
-      <div>URL: {qrCodeData.url}</div>
-      <div>Error correction level: {qrCodeData.errorCorrectionLevel}</div>
-      <div>Mask: {qrCodeData.mask}</div>
-      <br />
-      <div className={styles.qrCodeContainer}>
-        <QrCode qrCodeData={qrCodeData} />
-      </div>
-      <button onClick={updateQrCodeData}>Shuffle</button>
     </div>
   );
 }
