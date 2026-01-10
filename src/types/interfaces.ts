@@ -19,6 +19,12 @@ export interface QrCodeData {
   errorCorrectionLevel: ErrorCorrectionLevel;
 }
 
+export interface QrCodeDataMaskOptional {
+  url: string;
+  mask?: number;
+  errorCorrectionLevel: ErrorCorrectionLevel;
+}
+
 export interface GameData {
   questionNumber: number | null;
   score: number;

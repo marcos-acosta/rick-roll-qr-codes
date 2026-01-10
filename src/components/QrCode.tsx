@@ -1,10 +1,10 @@
 import qrcodegen from "nayuki-qr-code-generator";
 import styles from "./../app/page.module.css";
-import { QrCodeData } from "@/types/interfaces";
+import { QrCodeDataMaskOptional } from "@/types/interfaces";
 import { errorCorrectionCodeToInternalObject } from "@/lib/qr";
 
 interface QrCodeProps {
-  qrCodeData: QrCodeData;
+  qrCodeData: QrCodeDataMaskOptional;
   minVersion?: number;
   maxVersion?: number;
 }

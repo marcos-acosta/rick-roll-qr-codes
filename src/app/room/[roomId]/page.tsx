@@ -7,6 +7,7 @@ import { loadQrCodesFromFile } from "@/lib/qrCodeUpload";
 import { GameData, GameState } from "@/types/interfaces";
 import { Scanner } from "@yudiel/react-qr-scanner";
 import Loading from "@/layouts/Loading";
+import RoomHostSetup from "@/layouts/RoomHostSetup";
 
 export default function RoomPage({
   params,
@@ -71,99 +72,74 @@ export default function RoomPage({
     return <Loading />;
   }
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>Room: {roomId}</h1>
-      <h2>Role: {role}</h2>
-      {gameData && (
+  return role === "creator" ? (
+    <RoomHostSetup
+      handleFileUpload={handleFileUpload}
+      roomCode={roomId}
+      gameData={gameData}
+      start={start}
+    />
+  ) : (
+    // <div>
+    //   <h3>You are the creator - show QR code</h3>
+    //   <div style={{ marginBottom: "20px" }}>
+    //     <label htmlFor="qr-upload">Upload QR Codes JSON: </label>
+    //     <input
+    //       id="qr-upload"
+    //       type="file"
+    //       accept="application/json"
+    //       onChange={handleFileUpload}
+    //     />
+    //   </div>
+    //   {gameData?.gameState === GameState.READY_TO_START && (
+    //     <button onClick={start}>Start</button>
+    //   )}
+    //   {gameData?.qrCodeData && (
+    //     <div>
+    //       <div style={{ maxWidth: "300px" }}>
+    //         <QrCode qrCodeData={gameData.qrCodeData} />
+    //       </div>
+    //       <div style={{ marginTop: "20px" }}>
+    //         <div>URL: {gameData.qrCodeData.url}</div>
+    //         <div>
+    //           Error correction: {gameData.qrCodeData.errorCorrectionLevel}
+    //         </div>
+    //       </div>
+    //     </div>
+    //   )}
+    //   {gameData?.gameState === GameState.GAME_OVER && (
+    //     <div>
+    //       <h1>Game over! Score: {gameData.score}</h1>
+    //       <button onClick={startOver}>Start over</button>
+    //     </div>
+    //   )}
+    // </div>
+    <div>
+      <h3>You are the joiner - scan or skip!</h3>
+      {gameData?.gameState === GameState.PENDING ? (
         <div>
-          <h2>Game state: {gameData.gameState}</h2>
-          <h2>Has player: {gameData.hasPlayer ? "yes" : "no"}</h2>
-          <h2>Question number: {gameData.questionNumber}</h2>
-          <h2>Score: {gameData.score}</h2>
-          <h2>
-            Action taken:{" "}
-            {gameData.scanned === null
-              ? "N/A"
-              : gameData.scanned
-              ? "Scanned"
-              : "Skipped"}
-          </h2>
-          <h2>
-            Was correct?{" "}
-            {gameData.correct === null
-              ? "N/A"
-              : gameData.correct
-              ? "YES! :D"
-              : "No :("}
-          </h2>
-        </div>
-      )}
-
-      {role === "creator" ? (
-        <div>
-          <h3>You are the creator - show QR code</h3>
-          <div style={{ marginBottom: "20px" }}>
-            <label htmlFor="qr-upload">Upload QR Codes JSON: </label>
-            <input
-              id="qr-upload"
-              type="file"
-              accept="application/json"
-              onChange={handleFileUpload}
+          <div>
+            <Scanner
+              onScan={() => guess(true)}
+              components={{
+                onOff: true,
+                torch: false,
+                zoom: false,
+                finder: false,
+              }}
+              sound={false}
             />
           </div>
-          {gameData?.gameState === GameState.READY_TO_START && (
-            <button onClick={start}>Start</button>
-          )}
-          {gameData?.qrCodeData && (
-            <div>
-              <div style={{ maxWidth: "300px" }}>
-                <QrCode qrCodeData={gameData.qrCodeData} />
-              </div>
-              <div style={{ marginTop: "20px" }}>
-                <div>URL: {gameData.qrCodeData.url}</div>
-                <div>
-                  Error correction: {gameData.qrCodeData.errorCorrectionLevel}
-                </div>
-              </div>
-            </div>
-          )}
-          {gameData?.gameState === GameState.GAME_OVER && (
-            <div>
-              <h1>Game over! Score: {gameData.score}</h1>
-              <button onClick={startOver}>Start over</button>
-            </div>
-          )}
+          <button onClick={() => guess(false)}>Skip</button>
+        </div>
+      ) : gameData?.gameState === GameState.GUESSED ? (
+        <button onClick={nextQuestion}>Next</button>
+      ) : gameData?.gameState === GameState.GAME_OVER ? (
+        <div>
+          <h1>Game over! Score {gameData.score}</h1>
         </div>
       ) : (
-        <div>
-          <h3>You are the joiner - scan or skip!</h3>
-          {gameData?.gameState === GameState.PENDING ? (
-            <div>
-              <div>
-                <Scanner
-                  onScan={() => guess(true)}
-                  components={{
-                    onOff: true,
-                    torch: false,
-                    zoom: false,
-                    finder: false,
-                  }}
-                  sound={false}
-                />
-              </div>
-              <button onClick={() => guess(false)}>Skip</button>
-            </div>
-          ) : gameData?.gameState === GameState.GUESSED ? (
-            <button onClick={nextQuestion}>Next</button>
-          ) : gameData?.gameState === GameState.GAME_OVER ? (
-            <div>
-              <h1>Game over! Score {gameData.score}</h1>
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
+        <></>
       )}
     </div>
   );
