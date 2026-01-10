@@ -6,6 +6,7 @@ import QrCode from "@/components/QrCode";
 import { loadQrCodesFromFile } from "@/lib/qrCodeUpload";
 import { GameData, GameState } from "@/types/interfaces";
 import { Scanner } from "@yudiel/react-qr-scanner";
+import Loading from "@/layouts/Loading";
 
 export default function RoomPage({
   params,
@@ -67,7 +68,7 @@ export default function RoomPage({
   };
 
   if (!role) {
-    return <div style={{ padding: "20px" }}>Connecting...</div>;
+    return <Loading />;
   }
 
   return (
