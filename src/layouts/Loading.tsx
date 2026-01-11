@@ -1,9 +1,17 @@
 import styles from "./../app/page.module.css";
 
-export default function Loading() {
+interface LoadingProps {
+  showTitle?: boolean;
+  message: string;
+}
+
+export default function Loading(props: LoadingProps) {
   return (
     <div className={styles.fullPageContainer}>
-      <div className={styles.loadingText}>loading...</div>
+      {props.showTitle && (
+        <div className={styles.loadingTitle}>QRICK QROLL</div>
+      )}
+      <div className={styles.loadingText}>{props.message}</div>
     </div>
   );
 }

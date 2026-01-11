@@ -42,7 +42,7 @@ input.qrCodesJsonUpload {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .roomCode {
@@ -81,6 +81,7 @@ input.qrCodesJsonUpload {
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 1.25rem;
@@ -93,7 +94,7 @@ input.qrCodesJsonUpload {
 }
 
 .pageInnerContainer {
-  width: 95%;
+  width: 90%;
   max-width: 500px;
 }
 
@@ -105,7 +106,6 @@ input.qrCodesJsonUpload {
 
 .description {
   margin-top: 20px;
-  font-size: 16px;
 }
 
 .centeredTitleContainer {
@@ -118,8 +118,8 @@ input.qrCodesJsonUpload {
 .actionsGrid {
   width: 95%;
   max-width: 1000px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -204,13 +204,49 @@ input.qrCodesJsonUpload {
 .roundText {
   font-size: 4rem;
   font-weight: bold;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .scoreContainer {
   font-size: 2rem;
   margin-top: 5px;
   font-style: italic;
+}
+
+.waitingText {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+}
+
+.loadingTitle {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.guesserScreenTitle {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.qrScannerInnerContainer {
+  width: 75%;
+  border: 4px solid var(--foreground);
+}
+
+.skipButtonContainer {
+  margin-top: 25px;
+  width: 75%;
+}
+
+.skipButton {
+  width: 100%;
+  font-size: 1.5rem;
 }
 
 /* Enable hover only on non-touch devices */

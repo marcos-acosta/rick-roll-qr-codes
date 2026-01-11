@@ -1,7 +1,5 @@
-import { ErrorCorrectionLevel, GameData, GameState } from "@/types/interfaces";
+import { GameData, GameState } from "@/types/interfaces";
 import styles from "./../app/page.module.css";
-import { classes } from "@/lib/util";
-import { useRef, useState } from "react";
 import QrCode from "@/components/QrCode";
 
 interface HostTrialProps {
@@ -19,9 +17,8 @@ export default function HostTrial(props: HostTrialProps) {
           <div className={styles.roundText}>ROUND {roundNumber}</div>
           <div className={styles.scoreContainer}>
             {props.gameData.score} for{" "}
-            {roundNumber + props.gameData.gameState === GameState.GUESSED
-              ? 1
-              : 0}
+            {roundNumber -
+              (props.gameData.gameState === GameState.GUESSED ? 0 : 1)}
           </div>
           {props.gameData.qrCodeData && (
             <div className={styles.trialQrCodeContainer}>
