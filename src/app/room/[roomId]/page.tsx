@@ -98,7 +98,11 @@ export default function RoomPage({
   ) : isInRoomSetup ? (
     <Loading message={"waiting for host to start..."} showTitle />
   ) : isInGame ? (
-    <GuesserScreen gameData={gameData} guess={guess} />
+    <GuesserScreen
+      gameData={gameData}
+      guess={guess}
+      nextQuestion={nextQuestion}
+    />
   ) : (
     <></>
   );

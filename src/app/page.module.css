@@ -249,6 +249,24 @@ input.qrCodesJsonUpload {
   font-size: 1.5rem;
 }
 
+.nextButton {
+  width: 75%;
+  font-size: 1.5rem;
+  margin-top: 25px;
+}
+
+.rickFeedback {
+  width: 75%;
+  height: unset;
+}
+
+.explanation {
+  width: 75%;
+  margin-top: 25px;
+  font-style: italic;
+  font-size: 1.25rem;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
