@@ -33,12 +33,12 @@ export default function HostTrial(props: HostTrialProps) {
   }, [isRickRoll]);
 
   return (
-    <div>
+    <div className={styles.hostTrialContainer}>
       {guessed && props.gameData.correct && (
         <Confetti width={width} height={height} />
       )}
       <div className={styles.topLeftTitle}>QRICK QROLL</div>
-      <div className={styles.centerContent}>
+      <div className={styles.hostTrialCenterContent}>
         <div className={styles.trialInnerContent}>
           <div className={styles.roundText}>ROUND {roundNumber}</div>
           <div className={styles.scoreContainer}>

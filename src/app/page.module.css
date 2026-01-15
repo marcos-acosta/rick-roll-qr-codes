@@ -188,28 +188,47 @@ input.qrCodesJsonUpload {
   font-style: italic;
 }
 
+.hostTrialContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hostTrialCenterContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
 .trialInnerContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 95%;
+  height: 95%;
   max-width: 1200px;
+  max-height: 900px;
+  justify-content: center;
 }
 
 .trialQrCodeContainer {
   width: 75%;
-  margin-top: 50px;
+  max-width: 500px;
+  max-height: 50vh;
+  margin-top: 2vh;
 }
 
 .roundText {
-  font-size: 4rem;
+  font-size: clamp(2rem, 6vw, 4rem);
   font-weight: bold;
-  margin-top: 50px;
 }
 
 .scoreContainer {
-  font-size: 2rem;
-  margin-top: 5px;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  margin-top: 0.5vh;
   font-style: italic;
 }
 
@@ -271,8 +290,10 @@ input.qrCodesJsonUpload {
 }
 
 .rickBigScreen {
-  width: 500px;
-  height: unset;
+  width: min(500px, 80vw);
+  max-height: 50vh;
+  height: auto;
+  object-fit: contain;
 }
 
 .safeWebsite {
@@ -282,9 +303,11 @@ input.qrCodesJsonUpload {
 }
 
 .iframeContainer {
-  margin-top: 25px;
-  width: 95%;
-  aspect-ratio: 3/2;
+  margin-top: 2vh;
+  width: 90%;
+  max-width: 800px;
+  height: 50vh;
+  max-height: 600px;
 }
 
 .correct {
