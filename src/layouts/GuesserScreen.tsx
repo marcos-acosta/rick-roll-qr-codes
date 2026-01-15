@@ -3,7 +3,7 @@ import styles from "./../app/page.module.css";
 import { classes } from "@/lib/util";
 import { Scanner } from "@yudiel/react-qr-scanner";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface GuesserScreenProps {
   gameData: GameData;
@@ -12,11 +12,18 @@ interface GuesserScreenProps {
 }
 
 export default function GuesserScreen(props: GuesserScreenProps) {
+  const [codeToScan, setCodeToScan] = useState(false);
+
   useEffect(() => {
     if (props.gameData.scanned && !props.gameData.correct) {
       window.open("https://www.youtube.com/watch?v=xvFZjo5PgG0", "_blank");
     }
   }, [props.gameData]);
+
+  const nextQuestion = () => {
+    setCodeToScan(false);
+    props.nextQuestion();
+  };
 
   return (
     <div>
@@ -35,7 +42,9 @@ export default function GuesserScreen(props: GuesserScreenProps) {
         <div className={styles.centerContent}>
           <div className={styles.qrScannerInnerContainer}>
             <Scanner
-              onScan={() => props.guess(true)}
+              onScan={(detectedCodes) =>
+                setCodeToScan(detectedCodes.length > 0)
+              }
               components={{
                 onOff: true,
                 torch: false,
@@ -48,6 +57,13 @@ export default function GuesserScreen(props: GuesserScreenProps) {
           <div className={styles.skipButtonContainer}>
             <button
               className={classes(styles.button, styles.skipButton)}
+              onClick={() => props.guess(true)}
+              disabled={!codeToScan}
+            >
+              SCAN
+            </button>
+            <button
+              className={classes(styles.button, styles.skipButton)}
               onClick={() => props.guess(false)}
             >
               RICK ROLL
@@ -56,25 +72,35 @@ export default function GuesserScreen(props: GuesserScreenProps) {
         </div>
       ) : props.gameData.gameState === GameState.GUESSED ? (
         <div className={styles.centerContent}>
-          <Image
-            src={props.gameData.correct ? "/sad-rick.gif" : "/rick-roll.gif"}
-            className={styles.rickFeedback}
-            alt="Rick roll"
-            width={300}
-            height={300}
-          />
+          {!props.gameData.correct && props.gameData.scanned && (
+            <Image
+              src="/rick-roll.gif"
+              className={styles.rickFeedback}
+              alt="Rick roll"
+              width={300}
+              height={300}
+            />
+          )}
+          <div
+            className={classes(
+              styles.guesserFeedbackText,
+              props.gameData.correct ? styles.correct : styles.incorrect
+            )}
+          >
+            {props.gameData.correct ? "CORRECT :D" : "INCORRECT >:("}
+          </div>
           <div className={styles.explanation}>
             {props.gameData.scanned && props.gameData.correct
-              ? "correct! that qr code was perfectly safe."
+              ? "Nice! You scanned a harmless QR code."
               : props.gameData.scanned && !props.gameData.correct
-              ? "you fool! you've been rick rolled!"
+              ? "You fool! You've been rick rolled!"
               : !props.gameData.scanned && props.gameData.correct
-              ? "nice! you avoided a rick roll!"
-              : "oh no! you missed opening a perfectly safe link!"}
+              ? "Nice! You avoided being rick rolled!"
+              : "Oh no! You got paranoid and skipped a cool website..."}
           </div>
           <button
             className={classes(styles.button, styles.nextButton)}
-            onClick={props.nextQuestion}
+            onClick={nextQuestion}
           >
             NEXT
           </button>

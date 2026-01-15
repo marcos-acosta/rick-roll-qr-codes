@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
 import { useEffect, useRef } from "react";
+import { classes } from "@/lib/util";
 
 interface HostTrialProps {
   gameData: GameData;
@@ -21,7 +22,7 @@ export default function HostTrial(props: HostTrialProps) {
     guessed && props.gameData.scanned === !props.gameData.correct;
 
   useEffect(() => {
-    if (isRickRoll) {
+    if (isRickRoll && !props.gameData.correct) {
       if (!audioRef.current) {
         audioRef.current = new Audio("/rick-roll.mp3");
       }
@@ -45,10 +46,22 @@ export default function HostTrial(props: HostTrialProps) {
             {roundNumber -
               (props.gameData.gameState === GameState.GUESSED ? 0 : 1)}
           </div>
+          {props.gameData.gameState === GameState.GUESSED && (
+            <div
+              className={classes(
+                styles.scoreContainer,
+                props.gameData.correct ? styles.correct : styles.incorrect
+              )}
+            >
+              {props.gameData.correct ? "CORRECT :D" : "INCORRECT >:("}
+            </div>
+          )}
           {guessed && isRickRoll ? (
             <div>
               <Image
-                src="/rick-roll.gif"
+                src={
+                  props.gameData.correct ? "/sad-rick.gif" : "/rick-roll.gif"
+                }
                 className={styles.rickBigScreen}
                 alt="Rick roll"
                 width={300}
