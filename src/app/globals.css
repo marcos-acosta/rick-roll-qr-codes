@@ -18,6 +18,12 @@ body {
   font-size: 18px;
 }
 
+@media (width <= 400px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

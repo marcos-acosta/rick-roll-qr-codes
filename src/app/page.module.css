@@ -42,7 +42,7 @@ input.qrCodesJsonUpload {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .roomCode {
@@ -81,6 +81,7 @@ input.qrCodesJsonUpload {
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 1.25rem;
@@ -93,7 +94,7 @@ input.qrCodesJsonUpload {
 }
 
 .pageInnerContainer {
-  width: 95%;
+  width: 90%;
   max-width: 500px;
 }
 
@@ -105,7 +106,6 @@ input.qrCodesJsonUpload {
 
 .description {
   margin-top: 20px;
-  font-size: 16px;
 }
 
 .centeredTitleContainer {
@@ -118,8 +118,8 @@ input.qrCodesJsonUpload {
 .actionsGrid {
   width: 95%;
   max-width: 1000px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -179,6 +179,170 @@ input.qrCodesJsonUpload {
 .havePlayer {
   font-size: 1.25rem;
   margin-top: 20px;
+}
+
+.topLeftTitle {
+  padding: 25px 25px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.hostTrialContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hostTrialCenterContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.trialInnerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  height: 95%;
+  max-width: 1200px;
+  max-height: 900px;
+  justify-content: center;
+}
+
+.trialQrCodeContainer {
+  width: 75%;
+  max-width: 500px;
+  max-height: 50vh;
+  margin-top: 2vh;
+}
+
+.roundText {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: bold;
+}
+
+.scoreContainer {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  margin-top: 0.5vh;
+  font-style: italic;
+}
+
+.waitingText {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+}
+
+.loadingTitle {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.guesserScreenTitle {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.qrScannerInnerContainer {
+  width: 75%;
+  border: 4px solid var(--foreground);
+}
+
+.skipButtonContainer {
+  margin-top: 25px;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skipButton {
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.nextButton {
+  width: 75%;
+  font-size: 1.5rem;
+  margin-top: 25px;
+}
+
+.startOverButton {
+  width: 75%;
+  max-width: 300px;
+  font-size: 1.5rem;
+  margin-top: 25px;
+}
+
+.rickFeedback {
+  width: 75%;
+  height: unset;
+  margin-bottom: 10px;
+}
+
+.explanation {
+  width: 75%;
+  font-style: italic;
+  font-size: 1.25rem;
+}
+
+.rickBigScreen {
+  width: min(500px, 80vw);
+  max-height: 50vh;
+  height: auto;
+  object-fit: contain;
+}
+
+.safeWebsite {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed var(--foreground);
+}
+
+.iframeContainer {
+  margin-top: 2vh;
+  width: 90%;
+  max-width: 800px;
+  height: 50vh;
+  max-height: 600px;
+}
+
+.correct {
+  color: rgb(11, 159, 66);
+}
+
+.incorrect {
+  color: rgb(219, 36, 4);
+}
+
+.guesserFeedbackText {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.gameOverText {
+  font-size: clamp(5rem, 10vw, 8rem);
+  font-weight: bold;
+  font-style: italic;
+}
+
+.gameOverSubtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.guesserScreenOuterContainer {
+  width: 100%;
+  max-width: 500px;
 }
 
 /* Enable hover only on non-touch devices */

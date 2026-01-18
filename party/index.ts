@@ -59,6 +59,7 @@ export default class Server implements Party.Server {
     if (!this.safeQrCodeSampler) {
       return;
     }
+    this.safeQrCodeSampler.reset();
     const isRickRoll = Math.random() > 0.5;
     const qrCodeData = isRickRoll
       ? generateRandomRickRollQrCode()

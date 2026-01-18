@@ -9,7 +9,7 @@ export default class Sampler<T> {
     this.remainingIndexes = new Set(Array(data.length).keys());
   }
 
-  private reset() {
+  public reset() {
     this.remainingIndexes = new Set(Array(this.data.length).keys());
   }
 

@@ -16,7 +16,9 @@
     "next": "16.1.1",
     "partysocket": "1.1.10",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-confetti": "^6.4.0",
+    "react-dom": "19.2.3",
+    "react-use": "^17.6.0"
   },
   "devDependencies": {
     "@types/node": "^20",

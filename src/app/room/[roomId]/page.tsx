@@ -2,12 +2,13 @@
 
 import { use, useState } from "react";
 import usePartySocket from "partysocket/react";
-import QrCode from "@/components/QrCode";
 import { loadQrCodesFromFile } from "@/lib/qrCodeUpload";
 import { GameData, GameState } from "@/types/interfaces";
 import { Scanner } from "@yudiel/react-qr-scanner";
 import Loading from "@/layouts/Loading";
 import RoomHostSetup from "@/layouts/RoomHostSetup";
+import HostTrial from "@/layouts/HostTrial";
+import GuesserScreen from "@/layouts/GuesserScreen";
 
 export default function RoomPage({
   params,
@@ -68,79 +69,42 @@ export default function RoomPage({
     socket.send(JSON.stringify({ type: "start_over" }));
   };
 
+  // console.log(gameData);
+
+  const isInRoomSetup =
+    gameData?.gameState == GameState.NOT_STARTED ||
+    gameData?.gameState === GameState.READY_TO_START;
+  const isInGame =
+    gameData?.gameState == GameState.PENDING ||
+    gameData?.gameState === GameState.GUESSED ||
+    gameData?.gameState === GameState.GAME_OVER;
+
   if (!role) {
-    return <Loading />;
+    return <Loading message={"loading..."} showTitle />;
   }
 
   return role === "creator" ? (
-    <RoomHostSetup
-      handleFileUpload={handleFileUpload}
-      roomCode={roomId}
+    isInRoomSetup ? (
+      <RoomHostSetup
+        handleFileUpload={handleFileUpload}
+        roomCode={roomId}
+        gameData={gameData}
+        start={start}
+      />
+    ) : isInGame ? (
+      <HostTrial gameData={gameData} startOver={startOver} />
+    ) : (
+      <></>
+    )
+  ) : isInRoomSetup ? (
+    <Loading message={"waiting for host to start..."} showTitle />
+  ) : isInGame ? (
+    <GuesserScreen
       gameData={gameData}
-      start={start}
+      guess={guess}
+      nextQuestion={nextQuestion}
     />
   ) : (
-    // <div>
-    //   <h3>You are the creator - show QR code</h3>
-    //   <div style={{ marginBottom: "20px" }}>
-    //     <label htmlFor="qr-upload">Upload QR Codes JSON: </label>
-    //     <input
-    //       id="qr-upload"
-    //       type="file"
-    //       accept="application/json"
-    //       onChange={handleFileUpload}
-    //     />
-    //   </div>
-    //   {gameData?.gameState === GameState.READY_TO_START && (
-    //     <button onClick={start}>Start</button>
-    //   )}
-    //   {gameData?.qrCodeData && (
-    //     <div>
-    //       <div style={{ maxWidth: "300px" }}>
-    //         <QrCode qrCodeData={gameData.qrCodeData} />
-    //       </div>
-    //       <div style={{ marginTop: "20px" }}>
-    //         <div>URL: {gameData.qrCodeData.url}</div>
-    //         <div>
-    //           Error correction: {gameData.qrCodeData.errorCorrectionLevel}
-    //         </div>
-    //       </div>
-    //     </div>
-    //   )}
-    //   {gameData?.gameState === GameState.GAME_OVER && (
-    //     <div>
-    //       <h1>Game over! Score: {gameData.score}</h1>
-    //       <button onClick={startOver}>Start over</button>
-    //     </div>
-    //   )}
-    // </div>
-    <div>
-      <h3>You are the joiner - scan or skip!</h3>
-      {gameData?.gameState === GameState.PENDING ? (
-        <div>
-          <div>
-            <Scanner
-              onScan={() => guess(true)}
-              components={{
-                onOff: true,
-                torch: false,
-                zoom: false,
-                finder: false,
-              }}
-              sound={false}
-            />
-          </div>
-          <button onClick={() => guess(false)}>Skip</button>
-        </div>
-      ) : gameData?.gameState === GameState.GUESSED ? (
-        <button onClick={nextQuestion}>Next</button>
-      ) : gameData?.gameState === GameState.GAME_OVER ? (
-        <div>
-          <h1>Game over! Score {gameData.score}</h1>
-        </div>
-      ) : (
-        <></>
-      )}
-    </div>
+    <></>
   );
 }
