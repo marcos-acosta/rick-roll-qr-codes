@@ -8,5 +8,75 @@
     "url": "https://en.wikipedia.org/wiki/When_You_Reach_Me",
     "mask": 6,
     "errorCorrectionLevel": "L"
+  },
+  {
+    "url": "https://www.instagram.com/creativecodingnyc",
+    "mask": 1,
+    "errorCorrectionLevel": "L"
+  },
+  {
+    "url": "https://www.instagram.com/creativecodingnyc",
+    "mask": 1,
+    "errorCorrectionLevel": "M"
+  },
+  {
+    "url": "https://www.instagram.com/creativecodingnyc",
+    "mask": 2,
+    "errorCorrectionLevel": "L"
+  },
+  {
+    "url": "https://www.instagram.com/creativecodingnyc",
+    "mask": 2,
+    "errorCorrectionLevel": "M"
+  },
+  {
+    "url": "https://www.instagram.com/creativecodingnyc",
+    "mask": 3,
+    "errorCorrectionLevel": "L"
+  },
+  {
+    "url": "https://www.instagram.com/creativecodingnyc",
+    "mask": 3,
+    "errorCorrectionLevel": "M"
+  },
+  {
+    "url": "https://www.instagram.com/creativecodingnyc",
+    "mask": 4,
+    "errorCorrectionLevel": "L"
+  },
+  {
+    "url": "https://www.instagram.com/creativecodingnyc",
+    "mask": 4,
+    "errorCorrectionLevel": "M"
+  },
+  {
+    "url": "https://WWW.INSTAGRAM.COM/creativecodingnyc",
+    "mask": 1,
+    "errorCorrectionLevel": "L"
+  },
+  {
+    "url": "https://WWW.INSTAGRAM.COM/creativecodingnyc",
+    "mask": 1,
+    "errorCorrectionLevel": "M"
+  },
+  {
+    "url": "https://eieio.games/blog/tiny-christmas",
+    "mask": 1,
+    "errorCorrectionLevel": "L"
+  },
+  {
+    "url": "https://eieio.games/blog/tiny-christmas",
+    "mask": 1,
+    "errorCorrectionLevel": "M"
+  },
+  {
+    "url": "https://eieio.games/blog/tiny-christmas",
+    "mask": 8,
+    "errorCorrectionLevel": "L"
+  },
+  {
+    "url": "https://eieio.games/blog/tiny-christmas",
+    "mask": 8,
+    "errorCorrectionLevel": "M"
   }
 ]
