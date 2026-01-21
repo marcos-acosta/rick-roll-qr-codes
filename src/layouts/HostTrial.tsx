@@ -38,7 +38,7 @@ export default function HostTrial(props: HostTrialProps) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
-    console.log(props.gameData.qrCodeData?.url);
+    console.log(props.gameData.qrCodeData);
   }, [roundNumber]);
 
   return (
