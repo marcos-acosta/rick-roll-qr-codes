@@ -4,7 +4,6 @@ import { use, useState } from "react";
 import usePartySocket from "partysocket/react";
 import { loadQrCodesFromFile } from "@/lib/qrCodeUpload";
 import { GameData, GameState } from "@/types/interfaces";
-import { Scanner } from "@yudiel/react-qr-scanner";
 import Loading from "@/layouts/Loading";
 import RoomHostSetup from "@/layouts/RoomHostSetup";
 import HostTrial from "@/layouts/HostTrial";
@@ -68,8 +67,6 @@ export default function RoomPage({
   const startOver = () => {
     socket.send(JSON.stringify({ type: "start_over" }));
   };
-
-  // console.log(gameData);
 
   const isInRoomSetup =
     gameData?.gameState == GameState.NOT_STARTED ||

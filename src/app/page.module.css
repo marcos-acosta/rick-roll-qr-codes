@@ -391,3 +391,52 @@ input.qrCodesJsonUpload {
     --button-secondary-border: #1a1a1a;
   }
 }
+
+/* --- Win95 screensaver background (CSS-only starfield) --- */
+/* .win95Saver {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  background: black;
+} */
+
+/* Two layers for parallax */
+/* .win95Saver::before,
+.win95Saver::after {
+  content: "";
+  position: absolute;
+  inset: -200%;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 70% 80%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 10% 90%, #fff 50%, transparent 52%),
+    radial-gradient(2px 2px at 90% 10%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 40% 60%, #fff 50%, transparent 52%),
+    radial-gradient(2px 2px at 55% 15%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 85% 55%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 25% 75%, #fff 50%, transparent 52%);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  opacity: 0.9;
+  transform: translateZ(0);
+  animation: starsMove 18s linear infinite;
+}
+
+.win95Saver::after {
+  background-size: 220px 220px;
+  opacity: 0.55;
+  animation-duration: 28s;
+}
+
+@keyframes starsMove {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(15%, 25%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .win95Saver::before,
+  .win95Saver::after {
+    animation: none;
+  }
+} */
