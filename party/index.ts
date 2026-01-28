@@ -29,10 +29,6 @@ export default class Server implements Party.Server {
   }
 
   isReadyToStart() {
-    console.log("Checking if ready to start:", {
-      hasPlayer: this.gameData.hasPlayer,
-      safeQrCodeSamplerExists: !!this.safeQrCodeSampler,
-    });
     return this.gameData.hasPlayer && this.safeQrCodeSampler;
   }
 
@@ -77,8 +73,6 @@ export default class Server implements Party.Server {
   }
 
   onConnect(conn: Party.Connection, ctx: Party.ConnectionContext) {
-    console.log(`Connected: ${conn.id} to room ${this.room.id}`);
-
     // If this is the first connection, they become the creator
     if (this.gameData.creator === null) {
       this.gameData.creator = conn.id;
@@ -90,8 +84,6 @@ export default class Server implements Party.Server {
       }
       conn.send(JSON.stringify({ type: "role", role: "joiner" }));
     }
-
-    console.log(`Broadcasting game data to room ${this.gameData}`);
 
     this.room.broadcast(
       JSON.stringify({ type: "game_data", gameData: this.gameData })
@@ -105,12 +97,9 @@ export default class Server implements Party.Server {
     if (data.type === "upload_qr_codes") {
       // Handle QR code upload
       const qrCodes = data.qrCodes as QrCodeData[];
-      console.log(`Received ${qrCodes.length} QR codes from ${sender.id}`);
-      console.log(qrCodes);
       if (Array.isArray(qrCodes) && qrCodes.length > 0) {
         this.safeQrCodeSampler = new Sampler(qrCodes);
         this.gameData.numSafeQrCodesUploaded = qrCodes.length;
-        console.log(`Initialized safe QR code sampler with ${qrCodes.length} codes`);
         // If we have both a player and QR codes, we're ready to start
         if (this.isReadyToStart()) {
           this.gameData.gameState = GameState.READY_TO_START;

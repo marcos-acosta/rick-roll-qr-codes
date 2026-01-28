@@ -68,8 +68,6 @@ export default function RoomPage({
     socket.send(JSON.stringify({ type: "start_over" }));
   };
 
-  // console.log(gameData);
-
   const isInRoomSetup =
     gameData?.gameState == GameState.NOT_STARTED ||
     gameData?.gameState === GameState.READY_TO_START;
