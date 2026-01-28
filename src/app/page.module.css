@@ -393,16 +393,16 @@ input.qrCodesJsonUpload {
 }
 
 /* --- Win95 screensaver background (CSS-only starfield) --- */
-.win95Saver {
+/* .win95Saver {
   position: absolute;
   inset: 0;
   overflow: hidden;
   z-index: 0;
   background: black;
-}
+} */
 
 /* Two layers for parallax */
-.win95Saver::before,
+/* .win95Saver::before,
 .win95Saver::after {
   content: "";
   position: absolute;
@@ -434,10 +434,9 @@ input.qrCodesJsonUpload {
   to   { transform: translate3d(15%, 25%, 0); }
 }
 
-/* Optional: reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .win95Saver::before,
   .win95Saver::after {
     animation: none;
   }
-}
+} */
