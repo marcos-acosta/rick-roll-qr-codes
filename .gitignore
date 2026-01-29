@@ -42,3 +42,6 @@ next-env.d.ts
 
 # party
 .partykit
+
+scripts/
+non-rick-rolls-jiadai.json
