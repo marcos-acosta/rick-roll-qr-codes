@@ -6,6 +6,7 @@ import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
 import { useEffect, useRef } from "react";
 import { classes } from "@/lib/util";
+import { debugPrintAllVectorizedRickRollQrCodes } from "@/lib/randomRickRoll";
 
 interface HostTrialProps {
   gameData: GameData;
@@ -38,8 +39,11 @@ export default function HostTrial(props: HostTrialProps) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
-    console.log(props.gameData.qrCodeData);
   }, [roundNumber]);
+
+  useEffect(() => {
+    debugPrintAllVectorizedRickRollQrCodes();
+  }, []);
 
   return (
     <div className={styles.hostTrialContainer}>

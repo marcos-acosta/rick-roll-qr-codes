@@ -1,7 +1,7 @@
 import { GameData, GameState, QrCodeData } from "@/types/interfaces";
 import Sampler from "@/lib/sampler";
 import type * as Party from "partykit/server";
-import { generateRandomRickRollQrCode } from "@/lib/randomRickRoll";
+import { getAllRickRolls } from "@/lib/randomRickRoll";
 
 const INITIAL_GAME_DATA: GameData = {
   questionNumber: null,
@@ -21,6 +21,7 @@ export default class Server implements Party.Server {
   // Room state - stored in memory for this room
   gameData: GameData;
   safeQrCodeSampler: Sampler<QrCodeData> | null = null;
+  rickRollSampler: Sampler<QrCodeData> = new Sampler(getAllRickRolls());
   isRickRoll: boolean | null = null;
 
   constructor(readonly room: Party.Room) {
@@ -38,7 +39,7 @@ export default class Server implements Party.Server {
     }
     const isRickRoll = Math.random() > 0.5;
     const qrCodeData = isRickRoll
-      ? generateRandomRickRollQrCode()
+      ? this.rickRollSampler.sample()
       : this.safeQrCodeSampler.sample();
     this.gameData = {
       ...this.gameData,
@@ -56,9 +57,10 @@ export default class Server implements Party.Server {
       return;
     }
     this.safeQrCodeSampler.reset();
+    this.rickRollSampler.reset();
     const isRickRoll = Math.random() > 0.5;
     const qrCodeData = isRickRoll
-      ? generateRandomRickRollQrCode()
+      ? this.rickRollSampler.sample()
       : this.safeQrCodeSampler.sample();
     this.gameData = {
       ...this.gameData,
