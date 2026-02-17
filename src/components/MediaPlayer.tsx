@@ -66,7 +66,7 @@ export default function MediaPlayer({ createRoom }: { createRoom: () => void }) 
             padding: "0px 6px",
             height: "1.5em",
             fontSize: "clamp(1rem, 3vw, 2rem)",
-            textShadow: "3px 3px #fff, -2px -2px #4bb1af",
+            textShadow: "3px 3px #fff",
             fontWeight: "900",
             letterSpacing: "-2px",
             margin: "0",
@@ -90,7 +90,7 @@ export default function MediaPlayer({ createRoom }: { createRoom: () => void }) 
             <div
               style={{
                 border: "2px solid #000",
-                backgroundColor: "#c2abf6",  // yellow
+                backgroundColor: "#c2abf6",  // purple
                 padding: "2px",
               }}
             >
@@ -114,9 +114,9 @@ export default function MediaPlayer({ createRoom }: { createRoom: () => void }) 
               <p>
                 A bespoke website created by{" "}
                 <a href="https://marcos.ac" target="_blank" className={y2k.link}>
-                  MARCOS ACOSTA
+                  Marcos Acosta
                 </a>{" "}
-                to win a bet he made with JIADAI HE that he could discriminate Rick
+                and Jiadai He to win a bet he made with her that he could discriminate Rick
                 Roll QR codes from non-Rick Roll QR codes from sight alone with 95%
                 accuracy. Read the exact {" "}
                 <a
@@ -124,7 +124,7 @@ export default function MediaPlayer({ createRoom }: { createRoom: () => void }) 
                   target="_blank"
                   className={y2k.link}
                 >
-                  TERMS
+                  terms
                 </a>
                 .
               </p>

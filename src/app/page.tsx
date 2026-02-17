@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
-import { classes, ROOM_CODE_LETTERS } from "@/lib/util";
+import { ROOM_CODE_LETTERS } from "@/lib/util";
 import MediaPlayer from "@/components/MediaPlayer";
-import Image from "next/image";
+import SystemMessageBox from "@/components/SystemMessageBox";
 
 function DesktopIcon({ src, label, x, y }: { src: string; label: string; x: number; y: number }) {
   return (
@@ -89,19 +88,7 @@ export default function RoomsPage() {
           height: 500,
         }}
       />
-      <img
-        src={"/error.png"}
-        alt="damn"
-        style={{
-          position: "absolute",
-          top: "10%",
-          left: "70%",
-          width: 350,
-          height: 350,
-          display: "block",
-          margin: "0 auto",
-        }}
-      />
+      <SystemMessageBox />
       <div
         style={{
           position: "absolute",
