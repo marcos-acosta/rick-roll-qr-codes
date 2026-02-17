@@ -150,7 +150,7 @@ export default function SystemMessageBox() {
             {/* Buttons */}
             <div style={{ display: "flex", justifyContent: "center", gap: 8 }}>
             <button type="button" style={buttonStyle}>I'm fine</button>
-            <button type="button" style={{ ...buttonStyle, color: "#A0A0A0" }}>Ok</button>
+            <button type="button" style={{ ...buttonStyle, color: "#A0A0A0" }}>Quit</button>
             <button type="button" style={buttonStyle}>Damn!</button>
             </div>
         </div>
