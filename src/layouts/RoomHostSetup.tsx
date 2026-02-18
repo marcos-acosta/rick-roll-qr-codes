@@ -55,16 +55,16 @@ export default function RoomHostSetup(props: RoomHostSetupProps) {
 
   return (
     <div className={styles.fullWidthOuterContainer}>
-      <div className={classes(styles.centeredTitleContainer, styles.title)}>
+      <div className={classes(styles.centeredTitleContainer, styles.title)} style={{ color: "#ba7500" }}>
         QRICK QROLL
       </div>
       <div className={styles.centerContent}>
-        <div className={styles.roomCodeContainer}>
+        <div className={styles.roomCodeContainer} style={{ color: "#ba7500" }}>
           <div>ROOM CODE</div>
           <div className={styles.roomCode}>{props.roomCode}</div>
         </div>
       </div>
-      <div className={styles.centerContent}>
+      <div className={styles.centerContent} style={{ color: "#ba7500" }}>
         <div className={styles.actionsGrid}>
           <div>
             <div
@@ -113,7 +113,7 @@ export default function RoomHostSetup(props: RoomHostSetupProps) {
       </div>
       <div className={styles.centerContent}>
         <button
-          className={classes(styles.button, styles.largeButton)}
+          className={classes(styles.button, styles.largeButton) } style={{ color: "#ba7500", borderColor: "#ba7500" }}
           disabled={props.gameData?.gameState !== GameState.READY_TO_START}
           onClick={props.start}
         >

@@ -28,6 +28,7 @@ export default function GuesserScreen(props: GuesserScreenProps) {
             styles.title,
             styles.guesserScreenTitle
           )}
+          style={{ color: "#ba7500" }}
         >
           QRICK QROLL
         </div>
