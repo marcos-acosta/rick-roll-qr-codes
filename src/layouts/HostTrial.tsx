@@ -68,20 +68,14 @@ export default function HostTrial(props: HostTrialProps) {
             </>
           ) : (
             <>
-              <div className={styles.roundText} style={{ color: "#ba7500" }}>ROUND {roundNumber}</div>
-              <div className={styles.scoreContainer} style={{ color: "#ba7500" }}>
+              <div className={styles.roundText}>ROUND {roundNumber}</div>
+              <div className={styles.scoreContainer}>
                 {props.gameData.score} for{" "}
                 {roundNumber -
                   (props.gameData.gameState === GameState.GUESSED ? 0 : 1)}
               </div>
               {props.gameData.gameState === GameState.GUESSED && (
-                <div
-                  className={classes(
-                    styles.scoreContainer,
-                    props.gameData.correct ? styles.correct : styles.incorrect
-                  )}
-                  style={{ color: "#ba7500" }}
-                >
+                <div className={styles.scoreContainer}>
                   {props.gameData.correct ? "CORRECT :D" : "INCORRECT >:("}
                 </div>
               )}

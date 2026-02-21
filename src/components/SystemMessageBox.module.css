@@ -1,0 +1,102 @@
+.dialog {
+  position: fixed;
+  width: 350px;
+  z-index: 20;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  overflow: hidden;
+  font-family: MS Sans Serif, Tahoma, Arial, sans-serif;
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background-color: #f48fac;
+  cursor: move;
+  user-select: none;
+}
+
+.titleText {
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #333;
+}
+
+.closeButton {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid #808080;
+  background-color: #c0c0c0;
+  box-shadow: inset 1px 1px 0 #fff, 1px 1px 0 #404040;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+  color: #404040;
+}
+
+.content {
+  background-color: #E0DCD1;
+  padding: 12px 14px;
+  border-top: 1px solid #808080;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.errorIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f48fac;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.message {
+  color: #000;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.button {
+  min-width: 70px;
+  padding: 4px 12px;
+  font-size: 12px;
+  border: 1px solid #808080;
+  background-color: #c0c0c0;
+  box-shadow: inset 1px 1px 0 #fff, 1px 1px 0 #404040;
+  cursor: default;
+  color: #000;
+  font-family: MS Sans Serif, Tahoma, Arial, sans-serif;
+}
+
+.buttonDisabled {
+  color: #A0A0A0;
+}

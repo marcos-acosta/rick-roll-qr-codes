@@ -44,6 +44,7 @@ input.qrCodesJsonUpload {
   align-items: center;
   flex-direction: column;
   margin-top: 25px;
+  color: var(--purpleForeground);
 }
 
 .roomCode {
@@ -114,6 +115,48 @@ input.qrCodesJsonUpload {
   display: flex;
   justify-content: center;
   padding-top: 100px;
+  color: var(--purpleForeground);
+}
+
+.fullWidthOuterContainer {
+  color: var(--purpleForeground);
+}
+
+.desktopIcon {
+  position: absolute;
+  transform: translate(-50%, -70%);
+  width: 10%;
+  text-align: center;
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+}
+
+.desktopIconImg {
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+}
+
+.desktopIconLabel {
+  margin-top: 2%;
+  font-size: clamp(11px, 2vw, 16px);
+  color: #fff;
+  text-shadow: 1px 1px #000;
+  font-family: Comic Sans MS, cursive;
+  line-height: 1.2;
+}
+
+.mixImg {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 500px;
+  height: 500px;
+}
+
+.hiddenInput {
+  display: none;
 }
 
 .actionsGrid {
@@ -225,12 +268,14 @@ input.qrCodesJsonUpload {
 .roundText {
   font-size: clamp(2rem, 6vw, 4rem);
   font-weight: bold;
+  color: var(--purpleForeground);
 }
 
 .scoreContainer {
   font-size: clamp(1.25rem, 3vw, 2rem);
   margin-top: 0.5vh;
   font-style: italic;
+  color: var(--purpleForeground);
 }
 
 .waitingText {
@@ -252,6 +297,7 @@ input.qrCodesJsonUpload {
 .guesserScreenTitle {
   margin-top: 50px;
   margin-bottom: 50px;
+  color: var(--purpleForeground);
 }
 
 .qrScannerInnerContainer {
