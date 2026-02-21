@@ -1,0 +1,66 @@
+.window {
+  position: absolute;
+  width: min(95vw, 560px);
+  max-height: 85vh;
+  overflow: auto;
+  background-color: #efbe5f;
+  border: 2px solid #000;
+  box-shadow: inset 2px 2px #fff, inset -2px -2px #d7c9bb;
+  font-family: MS Sans Serif, Arial, sans-serif;
+  touch-action: none;
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4ab1af;
+  color: #f48fac;
+  padding: 0px 6px;
+  height: 1.5em;
+  font-size: clamp(1rem, 3vw, 2rem);
+  text-shadow: 3px 3px #fff;
+  font-weight: 900;
+  letter-spacing: -2px;
+  margin: 0;
+  font-style: italic;
+  cursor: grab;
+}
+
+.closeButton {
+  cursor: pointer;
+}
+
+.windowContent {
+  padding: 10px;
+  background-color: #fec954;
+}
+
+.gifContainer {
+  border: 2px solid #000;
+  background-color: #c2abf6;
+  padding: 2px;
+}
+
+.gif {
+  display: block;
+  image-rendering: pixelated;
+  filter: invert(10%);
+}
+
+.betHeader {
+  background-color: #4a5b94;
+}
+
+.createRoomButton {
+  background-color: #4ab1af;
+  color: #000;
+  border: 4px outset #fff;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 5px 5px 0px #000;
+  text-transform: uppercase;
+  transition: transform 0.1s;
+}

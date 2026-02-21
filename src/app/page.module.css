@@ -18,19 +18,17 @@ input.qrCodesJsonUpload {
 }
 
 .module.black {
-  background-color: var(--purpleForeground);
+  background-color: var(--themeForeground);
 }
 
 .module.white {
-  background-color: var(--background);
+  background-color: transparent;
 }
 
 .pageOuterContainer {
-  --purpleForeground: #ba7500;
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 100px;
 }
 
 .centerContent {
@@ -44,6 +42,7 @@ input.qrCodesJsonUpload {
   align-items: center;
   flex-direction: column;
   margin-top: 25px;
+  color: var(--themeForeground);
 }
 
 .roomCode {
@@ -51,7 +50,7 @@ input.qrCodesJsonUpload {
 }
 
 .button {
-  border: 4px solid var(--purpleForeground);
+  border: 4px solid var(--themeForeground);
   background: none;
   text-transform: uppercase;
   font-weight: bold;
@@ -63,19 +62,20 @@ input.qrCodesJsonUpload {
 }
 
 .button:disabled {
-  border: 4px solid var(--gray);
-  color: var(--gray);
+  border: 4px solid var(--themeLight);
+  color: var(--themeLight);
   cursor: initial;
 }
 
 .button:enabled:hover {
-  background-color: var(--purpleForeground);
-  color: var(--background);
+  background-color: var(--themeForeground);
+  /* color: var(--background); */
+  color: black;
 }
 
 .button:disabled:hover {
-  border-color: var(--purpleForeground);
-  color: var(--purpleForeground);
+  border-color: var(--themeForeground);
+  color: var(--themeForeground);
 }
 
 .fullPageContainer {
@@ -113,7 +113,49 @@ input.qrCodesJsonUpload {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 100px;
+  color: var(--themeForeground);
+}
+
+.fullWidthOuterContainer {
+  color: var(--themeForeground);
+  width: 100%;
+}
+
+.desktopIcon {
+  position: absolute;
+  transform: translate(-50%, -70%);
+  width: 10%;
+  text-align: center;
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+}
+
+.desktopIconImg {
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+}
+
+.desktopIconLabel {
+  margin-top: 2%;
+  font-size: clamp(11px, 2vw, 16px);
+  color: #fff;
+  text-shadow: 1px 1px #000;
+  font-family: Comic Sans MS, cursive;
+  line-height: 1.2;
+}
+
+.mixImg {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 500px;
+  height: 500px;
+}
+
+.hiddenInput {
+  display: none;
 }
 
 .actionsGrid {
@@ -130,15 +172,15 @@ input.qrCodesJsonUpload {
 }
 
 .actionsGrid > div:first-child {
-  border-right: 2px solid var(--purpleForeground);
+  border-right: 2px solid var(--themeForeground);
 }
 
 .actionsGrid > div:nth-child(2) {
-  border-left: 2px solid var(--purpleForeground);
+  border-left: 2px solid var(--themeForeground);
 }
 
 .dropJsonContainer {
-  border: 4px dashed var(--purpleForeground);
+  border: 4px dashed var(--themeForeground);
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
@@ -225,12 +267,14 @@ input.qrCodesJsonUpload {
 .roundText {
   font-size: clamp(2rem, 6vw, 4rem);
   font-weight: bold;
+  color: var(--themeForeground);
 }
 
 .scoreContainer {
   font-size: clamp(1.25rem, 3vw, 2rem);
   margin-top: 0.5vh;
   font-style: italic;
+  color: var(--themeForeground);
 }
 
 .waitingText {
@@ -247,16 +291,22 @@ input.qrCodesJsonUpload {
   font-style: italic;
   font-size: 1.5rem;
   margin-bottom: 10px;
+  color: var(--themeForeground)
+}
+
+.loadingText {
+  color: var(--themeForeground)
 }
 
 .guesserScreenTitle {
   margin-top: 50px;
   margin-bottom: 50px;
+  color: var(--themeForeground);
 }
 
 .qrScannerInnerContainer {
   width: 75%;
-  border: 4px solid var(--purpleForeground);
+  border: 4px solid var(--themeForeground);
 }
 
 .skipButtonContainer {
@@ -307,7 +357,7 @@ input.qrCodesJsonUpload {
 .safeWebsite {
   width: 100%;
   height: 100%;
-  border: 1px dashed var(--purpleForeground);
+  border: 1px dashed var(--themeForeground);
 }
 
 .iframeContainer {
@@ -391,7 +441,7 @@ input.qrCodesJsonUpload {
     --button-secondary-hover: #1a1a1a;
     --button-secondary-border: #1a1a1a;
 
-    --purpleForeground: #ba7500;
+    /* --themeForeground: #eba01f; */
   }
 }
 

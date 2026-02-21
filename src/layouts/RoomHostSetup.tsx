@@ -6,7 +6,7 @@ import QrCode from "@/components/QrCode";
 
 interface RoomHostSetupProps {
   handleFileUpload: (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => Promise<void>;
   gameData: GameData | null;
   roomCode: string;
@@ -55,22 +55,22 @@ export default function RoomHostSetup(props: RoomHostSetupProps) {
 
   return (
     <div className={styles.fullWidthOuterContainer}>
-      <div className={classes(styles.centeredTitleContainer, styles.title)} style={{ color: "#ba7500" }}>
+      <div className={classes(styles.centeredTitleContainer, styles.title)}>
         QRICK QROLL
       </div>
       <div className={styles.centerContent}>
-        <div className={styles.roomCodeContainer} style={{ color: "#ba7500" }}>
+        <div className={styles.roomCodeContainer}>
           <div>ROOM CODE</div>
           <div className={styles.roomCode}>{props.roomCode}</div>
         </div>
       </div>
-      <div className={styles.centerContent} style={{ color: "#ba7500" }}>
+      <div className={styles.centerContent}>
         <div className={styles.actionsGrid}>
           <div>
             <div
               className={classes(
                 styles.dropJsonContainer,
-                isDragging && styles.dragging
+                isDragging && styles.dragging,
               )}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
@@ -87,7 +87,7 @@ export default function RoomHostSetup(props: RoomHostSetupProps) {
                 type="file"
                 accept="application/json"
                 onChange={props.handleFileUpload}
-                style={{ display: "none" }}
+                className={styles.hiddenInput}
               />
             </div>
           </div>
@@ -111,14 +111,16 @@ export default function RoomHostSetup(props: RoomHostSetupProps) {
           </div>
         </div>
       </div>
+      {}
       <div className={styles.centerContent}>
-        <button
-          className={classes(styles.button, styles.largeButton) } style={{ color: "#ba7500", borderColor: "#ba7500" }}
-          disabled={props.gameData?.gameState !== GameState.READY_TO_START}
-          onClick={props.start}
-        >
-          LET'S ROLL
-        </button>
+        {props.gameData?.gameState === GameState.READY_TO_START && (
+          <button
+            className={classes(styles.button, styles.largeButton)}
+            onClick={props.start}
+          >
+            LET'S ROLL
+          </button>
+        )}
       </div>
     </div>
   );
