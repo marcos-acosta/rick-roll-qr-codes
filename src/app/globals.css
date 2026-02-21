@@ -1,6 +1,8 @@
 :root {
   --background: #ffffff;
   --foreground: rgb(24, 24, 26);
+  --themeForeground: #c55de2;
+  --themeLight: #925c8e;
   --gray: rgb(118, 119, 127);
 }
 
@@ -25,7 +27,7 @@ body {
 }
 
 body {
-  color: var(--foreground);
+  color: var(--themeForeground);
   background: var(--background);
   font-family: var(--font-cascadia-mono), Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -6,7 +6,7 @@ import QrCode from "@/components/QrCode";
 
 interface RoomHostSetupProps {
   handleFileUpload: (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => Promise<void>;
   gameData: GameData | null;
   roomCode: string;
@@ -70,7 +70,7 @@ export default function RoomHostSetup(props: RoomHostSetupProps) {
             <div
               className={classes(
                 styles.dropJsonContainer,
-                isDragging && styles.dragging
+                isDragging && styles.dragging,
               )}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
@@ -111,14 +111,16 @@ export default function RoomHostSetup(props: RoomHostSetupProps) {
           </div>
         </div>
       </div>
+      {}
       <div className={styles.centerContent}>
-        <button
-          className={classes(styles.button, styles.largeButton)}
-          disabled={props.gameData?.gameState !== GameState.READY_TO_START}
-          onClick={props.start}
-        >
-          LET'S ROLL
-        </button>
+        {props.gameData?.gameState === GameState.READY_TO_START && (
+          <button
+            className={classes(styles.button, styles.largeButton)}
+            onClick={props.start}
+          >
+            LET'S ROLL
+          </button>
+        )}
       </div>
     </div>
   );

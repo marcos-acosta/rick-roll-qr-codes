@@ -5,7 +5,11 @@ import mediaStyles from "./MediaPlayer.module.css";
 import Image from "next/image";
 import { classes } from "@/lib/util";
 
-export default function MediaPlayer({ createRoom }: { createRoom: () => void }) {
+export default function MediaPlayer({
+  createRoom,
+}: {
+  createRoom: () => void;
+}) {
   const [pos, setPos] = useState({ x: 555, y: 111 }); // initial position
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
@@ -38,10 +42,7 @@ export default function MediaPlayer({ createRoom }: { createRoom: () => void }) 
 
   return (
     <div className={y2k.inner}>
-      <div
-        className={mediaStyles.window}
-        style={{ left: pos.x, top: pos.y }}
-      >
+      <div className={mediaStyles.window} style={{ left: pos.x, top: pos.y }}>
         {/* Title Bar (drag handle) */}
         <div
           onPointerDown={onPointerDown}
@@ -70,15 +71,17 @@ export default function MediaPlayer({ createRoom }: { createRoom: () => void }) 
 
           {/* Description Box */}
           <div className={y2k.descriptionBox}>
-            <div className={classes(y2k.descHeader, mediaStyles.betHeader)}>BET.TXT</div>
+            <div className={classes(y2k.descHeader, mediaStyles.betHeader)}>
+              BET.TXT
+            </div>
             <p>
               A bespoke website created by{" "}
               <a href="https://marcos.ac" target="_blank" className={y2k.link}>
                 Marcos Acosta
               </a>{" "}
-              and Jiadai He to win a bet he made with her that he could discriminate Rick
-              Roll QR codes from non-Rick Roll QR codes from sight alone with 95%
-              accuracy. Read the exact {" "}
+              and Jiadai He to win a bet he made with her that he could
+              discriminate Rick Roll QR codes from non-Rick Roll QR codes from
+              sight alone with 95% accuracy. Read the exact{" "}
               <a
                 href="https://docs.google.com/document/d/1oJakuWIx8AXTyerasxtlfZZnxzDXphE85znXyTfuHXI/edit?tab=t.0"
                 target="_blank"
